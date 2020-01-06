@@ -1,5 +1,5 @@
 # homebridge-ai-sync-platform
-Enables AI Synch Fans and (soon) lights in Homebridge for homekit
+Enables AI Synch Fans and their lights in Homebridge for homekit
 
 To install:
 
@@ -18,9 +18,6 @@ To configure, add this to your homebridge config.json file:
     ]
 
 
-## Not yet done:
-* Light controls
-
 ## Supports:
 * Fans
-* (will support) Lights
+* Lights within the fan

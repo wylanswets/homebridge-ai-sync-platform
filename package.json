@@ -1,0 +1,25 @@
+{
+  "name": "homebridge-ai-sync-platform",
+  "version": "0.0.1",
+  "description": "Homebridge plugin for ai-control fans",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wylan Swets",
+  "license": "ISC",
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.2.0"
+  },
+  "dependencies": {
+    "ai-sync-api": "^0.0.1",
+    "events": "^3.0.0",
+    "request": "^2.88.0",
+    "util": "^0.12.1",
+    "ws": "^7.2.1"
+  }
+}

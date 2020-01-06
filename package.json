@@ -16,7 +16,7 @@
     "homebridge": ">=0.2.0"
   },
   "dependencies": {
-    "ai-sync-api": "^0.0.1",
+    "ai-sync-api": "^0.0.2",
     "events": "^3.0.0",
     "request": "^2.88.0",
     "util": "^0.12.1",

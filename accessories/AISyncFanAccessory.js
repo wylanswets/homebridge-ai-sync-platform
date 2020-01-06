@@ -21,6 +21,14 @@ function AISyncFanAccessory(log, accessory, device, status, session) {
           })
         .on('get', this._getSpeedState.bind(this))
         .on('set', this._setSpeedState.bind(this));
+    
+    
+
+    this.lightService = this.accessory.getService(global.Service.Lightbulb);
+    this.lightService
+        .getCharacteristic(global.Characteristic.On)
+        .on('get', this._getCurrentLightState.bind(this))
+        .on('set', this._setLightOnOffState.bind(this));
 
     this.accessory.updateReachability(true);
 
@@ -38,20 +46,21 @@ AISyncFanAccessory.prototype.eventUpdate = function(data) {
     this.service
         .getCharacteristic(Characteristic.RotationSpeed)
         .setValue(status.H02, null, "internal");
+
+    this.lightService
+        .getCharacteristic(Characteristic.On)
+        .setValue(status.H0B, null, "internal");
     
 }
 
 AISyncFanAccessory.prototype._getCurrentState = function(callback) {
-
     this.aisync.deviceStatus(this.deviceId, function(data) {
         if(data.data.status.H00 == 1) {
             callback(null, true);
         } else {
             callback(null, false);
         }
-        
     })
-
 }
 
 AISyncFanAccessory.prototype._setOnOffState = function(targetState, callback, context) {
@@ -74,6 +83,25 @@ AISyncFanAccessory.prototype._setSpeedState = function(targetValue, callback, co
     this.aisync.fanSpeed(this.deviceId, targetValue, function(data) {
         callback(null);
     });
+}
+
+AISyncFanAccessory.prototype._getCurrentLightState = function(callback) {
+    this.aisync.deviceStatus(this.deviceId, function(data) {
+        if(data.data.status.H0B == 1) {
+            callback(null, true);
+        } else {
+            callback(null, false);
+        }
+    })
+}
+
+AISyncFanAccessory.prototype._setLightOnOffState = function(targetState, callback, context) {
+    if (context == "internal") return callback(null); // we set this state ourself, no need to react to it
+    var val = targetState === true ? 1 : 0;
+    this.aisync.lightOnOff(this.deviceId, val, function(data) {
+        callback(null);
+    });
+    
 }
 
 module.exports = AISyncFanAccessory;

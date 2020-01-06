@@ -1,6 +1,6 @@
 {
   "name": "homebridge-ai-sync-platform",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Homebridge plugin for ai-control fans",
   "main": "index.js",
   "scripts": {
@@ -21,5 +21,14 @@
     "request": "^2.88.0",
     "util": "^0.12.1",
     "ws": "^7.2.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wylanswets/homebridge-ai-sync-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wylanswets/homebridge-ai-sync-platform/issues"
+  },
+  "homepage": "https://github.com/wylanswets/homebridge-ai-sync-platform#readme",
+  "devDependencies": {}
 }

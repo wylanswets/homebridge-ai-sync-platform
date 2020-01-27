@@ -40,16 +40,22 @@ AISyncFanAccessory.prototype = Object.create(AISyncAccessory.prototype);
 
 AISyncFanAccessory.prototype.eventUpdate = function(data) {
     var status = data.data.changes.status;
-    this.service
-        .getCharacteristic(Characteristic.On)
-        .setValue(status.H00, null, "internal");
-    this.service
-        .getCharacteristic(Characteristic.RotationSpeed)
-        .setValue(status.H02, null, "internal");
+    if(status === undefined) {
+        this.log("Undefined status. Dumping data:");
+        this.log(data);
+    } else {
+        this.service
+            .getCharacteristic(Characteristic.On)
+            .setValue(status.H00, null, "internal");
+        this.service
+            .getCharacteristic(Characteristic.RotationSpeed)
+            .setValue(status.H02, null, "internal");
 
-    this.lightService
-        .getCharacteristic(Characteristic.On)
-        .setValue(status.H0B, null, "internal");
+        this.lightService
+            .getCharacteristic(Characteristic.On)
+            .setValue(status.H0B, null, "internal");
+    }
+    
     
 }
 
